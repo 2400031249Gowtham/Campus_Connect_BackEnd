@@ -39,12 +39,14 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        // Allow deployed frontends and local dev
         config.setAllowedOriginPatterns(List.of(
             "https://*.netlify.app",
             "https://*.railway.app",
-            "http://localhost:*",
-            "http://127.0.0.1:*"
+            "http://localhost:5173",
+            "http://localhost:8080",
+            "http://127.0.0.1:5173",
+            "https://*.vercel.app",
+            "http://localhost:*"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));

@@ -4,30 +4,31 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "activities")
+@Table(name = "milestones")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Activity {
+public class Milestone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
+
+    @Column(name = "pod_id", nullable = false)
+    private Long podId;
 
     @Column(nullable = false)
-    private String name;
+    private String title;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable = false)
-    private String date;
+    @Column(name = "due_date", nullable = false)
+    private LocalDate dueDate;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Category category;
-
-    public enum Category { club, sport, event }
+    private String status = "pending"; // "pending", "in_progress", "completed"
 }
